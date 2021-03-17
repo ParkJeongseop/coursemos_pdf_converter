@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "코스모스 PDF 변환기",
+    "version": "0.0.1",
+    "default_locale": "ko",
+    "description": "코스모스 LMS의 웹문서뷰어의 내용을 PDF변환",
+    "homepage_url": "https://github.com/ParkJeongseop/coursemos_pdf_converter",
+    "author": "박정섭",
+    "icons": {
+        "128": "icon.png"
+    },
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "script.js"
+            ],
+            "matches": [
+                "https://doc.coursemos.co.kr/*"
+            ],
+            "all_frames": true,
+            "run_at": "document_end"
+        }
+    ]
+}

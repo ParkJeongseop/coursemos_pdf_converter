@@ -1,0 +1,18 @@
+{
+    "extension_name": {
+        "message": "Coursemos_PDF_converter",
+        "description": "The display name for the extension."
+    },
+    "extension_description": {
+        "message": "Converts images collected from the document viewer of the Cosmos-based LMS platform into PDF.",
+        "description": "Description of what the extension does."
+    },
+    "Convert_to_PDF": {
+        "message": "Convert to PDF",
+        "description": ""
+    },
+    "Converting_to_PDF": {
+        "message": "Converting to PDF",
+        "description": ""
+    }
+}

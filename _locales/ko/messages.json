@@ -1,0 +1,18 @@
+{
+    "extension_name": {
+        "message": "코스모스 PDF 변환기",
+        "description": "The display name for the extension."
+    },
+    "extension_description": {
+        "message": "코스모스기반 LMS플랫폼의 문서뷰어에서 문서 이미지를 모은 것을 PDF로 변환한다.",
+        "description": "Description of what the extension does."
+    },
+    "Convert_to_PDF": {
+        "message": "PDF변환",
+        "description": ""
+    },
+    "Converting_to_PDF": {
+        "message": "PDF변환중",
+        "description": ""
+    }
+}

@@ -1,15 +1,18 @@
-var script1 = document.createElement('script');
+this.console.log("ON");
+var script1 = this.document.createElement('script');
 script1.type = 'text/javascript';
 script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js';
-document.head.appendChild(script1);
+this.document.head.appendChild(script1);
 
-var script2 = document.createElement('script');
+var script2 = this.document.createElement('script');
 script2.type = 'text/javascript';
-script2.text = `async function get_pdf() {
+script2.text = `function get_pdf() {
+    let btn = this.document.getElementById('btn_get_pdf');
+    btn.href = "";
+    btn.textContent = "` + chrome.i18n.getMessage('Converting_to_PDF') + `";
     console.log("PDF변환 시작하였습니다.");
     let n = Number(document.querySelector("#totalPageNumber").textContent);
     let prefix = document.querySelector("#page0").src.split('1.png')[0];
-
     let a = new Image();
     a.src = document.querySelector("#page0").src;
     a.onload = function () {
@@ -26,7 +29,7 @@ script2.text = `async function get_pdf() {
                 if (count == n) {
                     for (let j = 1; j <= n; j++) {
                         console.log("PDF변환중" + (j) + "/" + n);
-                        doc.addImage(pic[j - 1], 'JPEG', 0, 0, 960, 720);
+                        doc.addImage(pic[j - 1], 'JPEG', 0, 0, a.width, a.height);
                         if (j == n) {
                             doc.save(document.querySelector("#headLogo > div").textContent);
                         } else {
@@ -34,15 +37,23 @@ script2.text = `async function get_pdf() {
                         }
                     }
                     console.log("PDF변환이 끝났습니다.");
+                    btn.href = 'javascript:get_pdf();';
+                    btn.textContent = "` + chrome.i18n.getMessage('Convert_to_PDF') + `";
                 }
             }
         }
     }
 }`;
-document.head.appendChild(script2);
+this.document.head.appendChild(script2);
 
-var a = document.createElement('a');
-a.style = 'float: left; margin-right: 10px; margin-top: 5px; display: block; text-decoration: none; background-color: rgb(177, 177, 177); color: rgb(66, 66, 66); padding: 8px;';
-a.text = '강제PDF다운로드'
+var a = this.document.createElement('a');
+a.id = 'btn_get_pdf';
+a.style = 'float: left; margin-left: 10px; margin-right: 10px; margin-top: 5px; display: block; text-decoration: none; background-color: rgb(177, 177, 177); color: rgb(66, 66, 66); padding: 8px;';
+a.text = chrome.i18n.getMessage('Convert_to_PDF');
 a.href = `javascript:get_pdf();`;
-document.querySelector("#headRight > div.gnb").appendChild(a);
+setTimeout(`
+if(document.querySelector("#headRight > div.gnb > div") === null) {
+    this.document.querySelector('#headRight > div.gnb').appendChild(a)
+}else{
+    document.querySelector("#headRight > div.gnb > div").insertBefore(a, document.querySelector("#headRight > div.gnb > div > div"));
+}`, 1000);
